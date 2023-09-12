@@ -28,11 +28,16 @@ function exibe()
  for(let i=0; i<3 ; i++){
   HTML += '<tr>';
   for(let j=0 ; j<3 ; j++)
-   if(tabuleiro[i][j]==0)
-    HTML +='<td>  __  </td>';
+   if(tabuleiro[i][j]==0){
+    HTML +=`<td onclick="jogar(${i},${j})">  ?  </td>`;
+
+
+   }
+
+   
    else 
     if(tabuleiro[i][j]==1)
-     HTML +='<td class="blue" > X </td>';
+     HTML +='<td class="blue"  > X </td>';
     else
      HTML +='<td class="green" > O </td>';
   HTML += '</tr>';
@@ -42,11 +47,11 @@ function exibe()
  
 }
 
-function jogar()
+function jogar(x,y)
 {
  aviso.innerHTML='Vez do jogador: ' + ((jogador)%2 + 1);
- lin = parseInt(document.getElementById("lin").value)-1;
- col = parseInt(document.getElementById("col").value)-1;
+ lin = parseInt(x);
+ col = parseInt(y);
 
  if(tabuleiro[lin][col]==0)
   if(jogador % 2)
@@ -98,5 +103,6 @@ function checa()
  if(soma==3 || soma==-3)
    aviso.innerHTML="Jogador " + ((jogador)%2 + 1) + " ganhou! Diagonal preenchida!";
 }
+
 
 //Nota: Página baseada no código disponível em https://www.javascriptprogressivo.net/2019/01/Codigo-Completo-Jogo-velha-JavaScript-HTML-JS.html
